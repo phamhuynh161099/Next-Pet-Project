@@ -155,7 +155,7 @@ const request = async <Response>(
         if (
             normalizeUrl === 'api/auth/login'
         ) {
-            const { accessToken, refreshToken } = (payload as LoginResType).data
+            const { accessToken, refreshToken } = (payload as LoginResType)
             localStorage.setItem('accessToken', accessToken)
             localStorage.setItem('refreshToken', refreshToken)
 
@@ -170,7 +170,7 @@ const request = async <Response>(
 
 }
 
-const http = {
+export const http = {
     get<Response>(
         url: string,
         options?: Omit<CustomOptions, 'body'> | undefined
