@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { ChevronRight } from "lucide-react";
 
@@ -20,6 +22,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { getAccessTokenFromLS } from "@/lib/utils";
 
 // This is sample data.
 const data = {
@@ -164,6 +167,7 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const isAuth = Boolean(getAccessTokenFromLS());
   return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -180,6 +184,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             key={item.title}
             title={item.title}
             className="group/collapsible"
+            
           >
             <SidebarGroup>
               <SidebarGroupLabel

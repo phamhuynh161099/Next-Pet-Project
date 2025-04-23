@@ -35,3 +35,13 @@ export const handleErrorApi = ({ error, setError, duration }: {
     toast.error(error?.payload?.message ?? 'Lỗi không xác định')
   }
 }
+
+const isClient = typeof window !== 'undefined'
+
+export const getAccessTokenFromLS = () => {
+  return isClient ? localStorage.getItem('accessToken') : null
+}
+
+export const getRefreshTokenFromLS = () => {
+  return isClient ? localStorage.getItem('refreshToken') : null
+}
