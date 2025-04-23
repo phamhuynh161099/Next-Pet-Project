@@ -22,6 +22,7 @@ import {
 import { useLoginMuatation } from "@/queries/useAuth";
 import { LoginBodyV2, LoginBodyV2Type } from "@/schemaValidations/auth.schema";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface ITotp {
   totp: string;
@@ -31,6 +32,7 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const router = useRouter();
   const loginMuatation = useLoginMuatation();
   const form = useForm<LoginBodyV2Type>({
     resolver: zodResolver(LoginBodyV2),
@@ -46,6 +48,7 @@ export function LoginForm({
     try {
       const result = await loginMuatation.mutateAsync(data);
       toast.success("Login successfull");
+      router.push("/manage/dashboard");
     } catch (error: any) {
 
       console.log('error',error)

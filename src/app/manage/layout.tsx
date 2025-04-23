@@ -1,3 +1,5 @@
+'use client'
+
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
@@ -14,12 +16,34 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { handleErrorApi } from "@/lib/utils";
+import { useAccountProfile } from "@/queries/useAccount";
+import { useLogoutMuatation } from "@/queries/useAuth";
+import { useRouter } from "next/navigation";
 
 export default function PublicLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+  const logoutMuatation = useLogoutMuatation();
+  const {data} = useAccountProfile();
+  const profile = data?.payload
+
+  const logout = async () => {
+    if (logoutMuatation.isPending) return;
+    try {
+      const result = await logoutMuatation.mutateAsync();
+      console.log(result);
+      router.push("/");
+    } catch (error: any) {
+      handleErrorApi({
+        error
+      });
+    }
+  };
+
   return (
     <SidebarProvider>
       <AppSidebar />

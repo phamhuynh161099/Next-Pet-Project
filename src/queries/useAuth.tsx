@@ -6,3 +6,10 @@ export const useLoginMuatation = () => {
     mutationFn: authApiRequest.login,
   });
 };
+
+
+export const useLogoutMuatation = () => {
+  return useMutation({
+    mutationFn: authApiRequest.logout,
+  });
+};
