@@ -1,10 +1,11 @@
 import accountApiRequest from "@/apiRequests/acount";
-import { AccountResType } from "@/schemaValidations/account.schema";
-import { useQuery } from "@tanstack/react-query";
+import mediaApiRequest from "@/apiRequests/media";
+import {
+  AccountResType
+} from "@/schemaValidations/account.schema";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
-export const useAccountProfile = (
-  onSuccess?: (data: AccountResType) => void
-) => {
+export const useAccountMe = (onSuccess?: (data: AccountResType) => void) => {
   return useQuery({
     queryKey: ["account-profile"],
     queryFn: () =>
@@ -12,5 +13,17 @@ export const useAccountProfile = (
         onSuccess && onSuccess(res.payload);
         return res;
       }),
+  });
+};
+
+export const useUpdateMeMutation = () => {
+  return useMutation({
+    mutationFn: mediaApiRequest.uppload,
+  });
+};
+
+export const useUpdateMediaMutation = () => {
+  return useMutation({
+    mutationFn: mediaApiRequest.uppload,
   });
 };

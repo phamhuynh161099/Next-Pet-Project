@@ -17,7 +17,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { handleErrorApi } from "@/lib/utils";
-import { useAccountProfile } from "@/queries/useAccount";
+import { useAccountMe } from "@/queries/useAccount";
 import { useLogoutMuatation } from "@/queries/useAuth";
 import { useRouter } from "next/navigation";
 
@@ -28,7 +28,7 @@ export default function PublicLayout({
 }>) {
   const router = useRouter();
   const logoutMuatation = useLogoutMuatation();
-  const {data} = useAccountProfile();
+  const {data} = useAccountMe();
   const profile = data?.payload
 
   const logout = async () => {
