@@ -12,13 +12,13 @@ export function middleware(request: NextRequest) {
     console.log('is Auth',isAuth);
 
 
-    if (privatePaths.some(path => pathname.startsWith(path)) && !isAuth) {
-        return NextResponse.redirect(new URL('/login', request.url))
-    }
+    // if (privatePaths.some(path => pathname.startsWith(path)) && !isAuth) {
+    //     return NextResponse.redirect(new URL('/login', request.url))
+    // }
 
-    if (unAuthPaths.some(path => pathname.startsWith(path)) && isAuth) {
-        return NextResponse.redirect(new URL('/', request.url))
-    }
+    // if (unAuthPaths.some(path => pathname.startsWith(path)) && isAuth) {
+    //     return NextResponse.redirect(new URL('/', request.url))
+    // }
 
     return NextResponse.next();
 }

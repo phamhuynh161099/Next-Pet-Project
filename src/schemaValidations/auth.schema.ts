@@ -34,3 +34,13 @@ export const LoginRes = z.object({
 })
 
 export type LoginResType = z.infer<typeof LoginRes>
+
+
+export const LogoutBody = z
+    .object({
+        accessToken: z.string(),
+        refreshToken: z.string(),
+    })
+    .strict()
+
+export type LogoutBodyType = z.infer<typeof LogoutBody>
