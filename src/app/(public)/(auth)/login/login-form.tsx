@@ -33,6 +33,8 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter();
+  const searchParams = new URLSearchParams(location.search);
+
   const loginMuatation = useLoginMuatation();
   const form = useForm<LoginBodyV2Type>({
     resolver: zodResolver(LoginBodyV2),

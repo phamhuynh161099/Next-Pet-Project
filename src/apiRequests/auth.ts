@@ -14,6 +14,14 @@ const authApiRequest = {
         }
     }),
     logout: () => http.post<any>('/api/auth/logout', null, { baseUrl: '' }),
+    sRefreshToken: (body: any) => http.post<any>('/auth/refresh-token', null, {
+        headers: {
+            Authorization: `Bearer ${body['refreshToken']}`
+        }
+    }),
+    refreshToken: () => http.post<any>('/api/auth/refresh-token', null, {
+        baseUrl: ''
+    }),
 }
 
 export default authApiRequest;

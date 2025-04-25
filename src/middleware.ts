@@ -17,9 +17,11 @@ export function middleware(request: NextRequest) {
     /**
      * Chua dang nhap thi khong cho vao private [aths]
      */
-    // if (privatePaths.some(path => pathname.startsWith(path)) && !refreshToken) {
-    //     return NextResponse.redirect(new URL('/login', request.url))
-    // }
+    if (privatePaths.some(path => pathname.startsWith(path)) && !refreshToken) {
+        const url = new URL('/login',request.url);
+        url.searchParams.set('clearTokens','true')
+        return NextResponse.redirect(url)
+    }
 
     /**
      * Dang nhap roi khong cho vao login nua
@@ -33,7 +35,7 @@ export function middleware(request: NextRequest) {
      * Truong hop dang nhap roi nhng accessToken het han 
      */
     // if (privatePaths.some(path => pathname.startsWith(path)) && !accessToken && refreshToken) {
-    //     const url = new URL('/logout', request.url);
+    //     const url = new URL('/refreshToken', request.url);
     //     url.searchParams.set('redirect', refreshToken)
     //     return NextResponse.redirect(url)
     // }
