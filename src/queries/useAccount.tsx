@@ -3,7 +3,7 @@ import mediaApiRequest from "@/apiRequests/media";
 import {
   AccountResType
 } from "@/schemaValidations/account.schema";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useAccountMe = (onSuccess?: (data: AccountResType) => void) => {
   return useQuery({
@@ -27,3 +27,19 @@ export const useUpdateMediaMutation = () => {
     mutationFn: mediaApiRequest.uppload,
   });
 };
+
+
+/**
+ * 
+ *  
+ */
+export const useAddAccountMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: mediaApiRequest.uppload,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["account-profile"] });
+    },
+  });
+
+}

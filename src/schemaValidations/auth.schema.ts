@@ -44,3 +44,17 @@ export const LogoutBody = z
     .strict()
 
 export type LogoutBodyType = z.infer<typeof LogoutBody>
+
+
+
+// {
+//     "role": "admin",
+//     "user_id": "admin",
+//     "phone": "0900000000",
+//     "user_name": "Administrator",
+//     "id": 1,
+//     "message": "SUCCESS",
+//     "department": "IT",
+//     "email": "admin@gmail.com",
+//     "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0NTYzMTk0MiwiZXhwIjoxNzQ1Njc1MTQyfQ.w_3YtKx27h8RIpx5oufR6lw8i3qgw3Wzhay6WnB0Wfo"
+// }
